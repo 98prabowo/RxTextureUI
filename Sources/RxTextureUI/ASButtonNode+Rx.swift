@@ -30,18 +30,6 @@ extension Reactive where Base: ASButtonNode {
             node.setAttributedTitle(attributedString, for: controlState)
         }
     }
-    /// Apply text with attributes on all `UIControl.State`
-    public func text(_ attributes: [NSAttributedString.Key: Any]?) -> ASBinder<String?> {
-        return ASBinder(self.base) { node, text in
-            guard let text = text else {
-                self.setAllAttributedTitle(node, nil)
-                return
-            }
-            
-            let attributedString = NSAttributedString(string: text, attributes: attributes)
-            self.setAllAttributedTitle(node, attributedString)
-        }
-    }
     
     /// Apply text with attributes on selected `UIControl.State`
     public func attributedText(
@@ -73,6 +61,19 @@ extension Reactive where Base: ASButtonNode {
                 let attributedString = NSAttributedString(string: text, attributes: apply.attributes)
                 node.setAttributedTitle(attributedString, for: apply.state)
             }
+        }
+    }
+    
+    /// Apply text with attributes on all `UIControl.State`
+    public func text(_ attributes: [NSAttributedString.Key: Any]?) -> ASBinder<String?> {
+        return ASBinder(self.base) { node, text in
+            guard let text = text else {
+                self.setAllAttributedTitle(node, nil)
+                return
+            }
+            
+            let attributedString = NSAttributedString(string: text, attributes: attributes)
+            self.setAllAttributedTitle(node, attributedString)
         }
     }
     
