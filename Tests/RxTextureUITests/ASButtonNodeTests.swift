@@ -8,28 +8,27 @@
 import AsyncDisplayKit
 import RxCocoa
 import RxSwift
-import RxTest
 import RxTextureUI
 import XCTest
 
 internal final class ASButtonNodeTests: XCTestCase {
     // MARK: - Variables
     
-    internal var disposeBag: DisposeBag!
     internal var sut: ASButtonNode!
+    internal var disposeBag: DisposeBag!
     
     // MARK: - Setup
     
     override internal func setUp() {
         super.setUp()
-        disposeBag = DisposeBag()
         sut = ASButtonNode()
+        disposeBag = DisposeBag()
     }
     
     override internal func tearDown() {
         super.tearDown()
-        disposeBag = nil
         sut = nil
+        disposeBag = nil
     }
     
     // MARK: - Attributed Text Tests
