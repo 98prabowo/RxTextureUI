@@ -34,6 +34,8 @@ internal final class ASControlNodeTests: XCTestCase {
         disposeBag = nil
     }
     
+    // MARK: - Test Cases
+    
     internal func testEmitControlEvent() {
         scheduler.createHotObservable([
             .next(100, ASControlNodeEvent.touchUpInside),
