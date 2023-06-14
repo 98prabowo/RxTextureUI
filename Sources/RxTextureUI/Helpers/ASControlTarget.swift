@@ -6,8 +6,10 @@
 
 import AsyncDisplayKit
 import RxCocoa
-import RxCocoaRuntime
 import RxSwift
+
+#if canImport(RxCocoaRuntime)
+import RxCocoaRuntime
 
 internal final class ASControlTarget<Control: ASControlNode>: _RXKVOObserver, Disposable {
     typealias CallBack = (Control) -> ()
@@ -44,3 +46,4 @@ internal final class ASControlTarget<Control: ASControlNode>: _RXKVOObserver, Di
         self.callback = nil
     }
 }
+#endif
