@@ -17,6 +17,7 @@ Pod::Spec.new do |spec|
 
   spec.source_files  = "Sources/RxTextureUI/**/*.swift"
 
+  spec.dependency 'RxCocoaRuntime', '6.5.0-xcframework'
   spec.dependency 'RxCocoa', '~> 6.5'
   spec.dependency 'RxSwift', '~> 6.5'
   spec.dependency 'Texture', '~> 3.1'

@@ -5,11 +5,9 @@
 //  Created by Dimas Prabowo on 05/06/23.
 
 import AsyncDisplayKit
+import RxCocoaRuntime
 import RxCocoa
 import RxSwift
-
-#if canImport(RxCocoaRuntime)
-import RxCocoaRuntime
 
 internal final class ASControlTarget<Control: ASControlNode>: _RXKVOObserver, Disposable {
     typealias CallBack = (Control) -> ()
@@ -46,4 +44,3 @@ internal final class ASControlTarget<Control: ASControlNode>: _RXKVOObserver, Di
         self.callback = nil
     }
 }
-#endif
