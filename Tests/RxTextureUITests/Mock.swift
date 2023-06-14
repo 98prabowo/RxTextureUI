@@ -33,3 +33,7 @@ extension UIImage {
     internal static let mockRed = UIImage(color: .systemRed)!
     internal static let mockBlue = UIImage(color: .systemBlue)!
 }
+
+extension URL {
+    internal static let mockImageURL = URL(string: "https://assets.ayobandung.com/crop/0x0:0x0/750x500/webp/photo/2022/02/10/1532022422.jpg")!
+}
