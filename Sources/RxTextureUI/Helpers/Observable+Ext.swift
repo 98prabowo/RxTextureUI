@@ -12,7 +12,7 @@ extension ObservableType {
         return map { _ in }
     }
     
-    public func asDriverOnErrorJustComplete() -> Driver<Element> {
+    internal func asDriverOnErrorJustComplete() -> Driver<Element> {
         return asDriver { _ in Driver.empty() }
     }
     

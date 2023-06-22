@@ -8,8 +8,9 @@ import AsyncDisplayKit
 import RxCocoa
 import RxSwift
 import RxTest
-import RxTextureUI
 import XCTest
+
+@testable import RxTextureUI
 
 internal final class ASDisplayNodeTests: XCTestCase {
     // MARK: - Helpers Types

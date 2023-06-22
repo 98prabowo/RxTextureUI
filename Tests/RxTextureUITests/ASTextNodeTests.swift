@@ -7,8 +7,9 @@
 import AsyncDisplayKit
 import RxCocoa
 import RxSwift
-import RxTextureUI
 import XCTest
+
+@testable import RxTextureUI
 
 internal final class ASTextNodeTests: XCTestCase {
     // MARK: - Variables
