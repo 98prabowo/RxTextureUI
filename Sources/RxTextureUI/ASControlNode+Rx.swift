@@ -9,7 +9,11 @@ import RxCocoa
 import RxSwift
 
 extension Reactive where Base: ASControlNode {
-    public func controlEvent(_ type: ASControlNodeEvent) -> ControlEvent<Base> {
+    /// Reactive wrapper for target action pattern.
+    ///
+    /// - Parameters:
+    ///     - controlEvents: Filter for observed `ASControlNodeEvent` types.
+    public func controlEvent(_ controlEvents: ASControlNodeEvent) -> ControlEvent<Base> {
         let source: Observable<Base> = Observable
             .create { [weak control = self.base] observer in
                 MainScheduler.ensureExecutingOnScheduler()
@@ -19,7 +23,7 @@ extension Reactive where Base: ASControlNode {
                     return Disposables.create()
                 }
                 
-                let observer = ASControlTarget(control, type) { node in
+                let observer = ASControlTarget(control, controlEvents) { node in
                     observer.on(.next(node))
                 }
                 
@@ -62,12 +66,14 @@ extension Reactive where Base: ASControlNode {
         return ControlProperty<T>(values: source, valueSink: bindingObserver)
     }
     
+    /// Driver for tap action of `ASControlNode` object.
     public var tap: Driver<Void> {
         return self.controlEvent(.touchUpInside)
             .mapToVoid()
             .asDriverOnErrorJustComplete()
     }
     
+    /// Tap action that emit to relay.
     public func tap(to relay: PublishRelay<()>) -> Disposable {
         return self.controlEvent(.touchUpInside)
             .mapToVoid()
@@ -75,18 +81,21 @@ extension Reactive where Base: ASControlNode {
             .emit(to: relay)
     }
     
+    /// Binder of `Bool` for isHidden property of `ASControlNode`.
     public var isHidden: ASBinder<Bool> {
         return ASBinder(self.base) { node, isHidden in
             node.isHidden = isHidden
         }
     }
     
+    /// Binder of `Bool` for isEnabled property of `ASControlNode`.
     public var isEnabled: ASBinder<Bool> {
         return ASBinder(self.base) { node, isEnabled in
             node.isEnabled = isEnabled
         }
     }
     
+    /// Reactive wrapper for `Bool` of isHighlighted property.
     public var isHighlighted: ControlProperty<Bool> {
         return self.controlProperty(
             editingEvents: [.touchDown, .touchUpInside, .touchCancel],
@@ -99,6 +108,7 @@ extension Reactive where Base: ASControlNode {
         )
     }
     
+    /// Binder of `Bool` for isSelected property of `ASControlNode`.
     public var isSelected: ASBinder<Bool> {
         return ASBinder(self.base) { node, isSelected in
             node.isSelected = isSelected

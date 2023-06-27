@@ -9,6 +9,7 @@ import RxSwift
 import RxCocoa
 
 extension Reactive where Base: ASImageNode {
+    /// Binder of `UIImage` for image property of `ASImageNode`.
     public var image: ASBinder<UIImage?> {
         return ASBinder(self.base) { node, image in
             node.image = image

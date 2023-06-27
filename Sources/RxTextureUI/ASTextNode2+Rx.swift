@@ -9,12 +9,17 @@ import RxSwift
 import RxCocoa
 
 extension Reactive where Base: ASTextNode2 {
+    /// Binder of `NSAttributedString` for attributedText property of `ASTextNode`.
     public var attributedText: ASBinder<NSAttributedString?> {
         return ASBinder(self.base) { node, attributedText in
             node.attributedText = attributedText
         }
     }
 
+    /// Apply text with attributes.
+    ///
+    /// - Parameters:
+    ///     - attributes: List of attributes for text.
     public func text(_ attributes: [NSAttributedString.Key: Any]?) -> ASBinder<String?> {
         return ASBinder(self.base) { node, text in
             guard let text = text else {

@@ -17,21 +17,28 @@ import UIKit
 /// public static var selected: UIControl.State { get } // flag usable by app (see below)
  
 extension Reactive where Base: ASButtonNode {
-    /// Apply attributed string on all `UIControl.State`
+    /// Binder for attributed string on all `UIControl.State`.
     public var attributedText: ASBinder<NSAttributedString?> {
         return ASBinder(self.base) { node, attributedString in
             self.setAllAttributedTitle(node, attributedString)
         }
     }
     
-    /// Apply attributed string on selected `UIControl.State`
+    /// Apply attributed string on selected `UIControl.State`.
+    ///
+    /// - Parameters:
+    ///     - controlState: Filter for observed `UIControl.State` types.
     public func attributedText(_ controlState: UIControl.State) -> ASBinder<NSAttributedString?> {
         return ASBinder(self.base) { node, attributedString in
             node.setAttributedTitle(attributedString, for: controlState)
         }
     }
     
-    /// Apply text with attributes on selected `UIControl.State`
+    /// Apply text with attributes on selected `UIControl.State`.
+    ///
+    /// - Parameters:
+    ///     - attributes: List of attributes for text.
+    ///     - controlState: Filter for observed `UIControl.State` types.
     public func attributedText(
         _ attributes: [NSAttributedString.Key: Any]?,
         for controlState: UIControl.State
@@ -47,7 +54,10 @@ extension Reactive where Base: ASButtonNode {
         }
     }
     
-    /// Apply text with `ASControlStateType`
+    /// Apply text with `ASControlStateType`.
+    ///
+    /// - Parameters:
+    ///     - applyList: List of `ASControlStateType` for filtering observed types.
     public func attributedText(applyList: [ASControlStateType]) -> ASBinder<String?> {
         return ASBinder(self.base) { node, text in
             guard let text = text else {
@@ -64,7 +74,10 @@ extension Reactive where Base: ASButtonNode {
         }
     }
     
-    /// Apply text with attributes on all `UIControl.State`
+    /// Apply text with attributes on all `UIControl.State`.
+    ///
+    /// - Parameters:
+    ///     - attributes: List of attributes for text.
     public func text(_ attributes: [NSAttributedString.Key: Any]?) -> ASBinder<String?> {
         return ASBinder(self.base) { node, text in
             guard let text = text else {
@@ -77,14 +90,17 @@ extension Reactive where Base: ASButtonNode {
         }
     }
     
-    /// Apply image
+    /// Binder of image for `ASButtonNode`.
     public var image: ASBinder<UIImage?> {
         return ASBinder(self.base) { node, image in
             self.setAllImage(node, image)
         }
     }
     
-    /// Apply image with `ASControlStateType`
+    /// Binder for image with `ASControlStateType`.
+    ///
+    /// - Parameters:
+    ///     - applyList: List of `ASControlStateType` for filtering observed types.
     public func image(applyList: [ASControlStateType]) -> ASBinder<UIImage?> {
         return ASBinder(self.base) { node, image in
             guard let image = image  else {
@@ -100,14 +116,17 @@ extension Reactive where Base: ASButtonNode {
         }
     }
     
-    /// Apply background image
+    /// Binder of background image for `ASButtonNode`.
     public var backgroundImage: ASBinder<UIImage?> {
         return ASBinder(self.base) { node, image in
             self.setAllBackgroundImage(node, image)
         }
     }
     
-    /// Apply background image with `ASControlStateType`
+    /// Binder for background image with `ASControlStateType`.
+    ///
+    /// - Parameters:
+    ///     - applyList: List of `ASControlStateType` for filtering observed types.
     public func backgroundImage(applyList: [ASControlStateType]) -> ASBinder<UIImage?> {
         return ASBinder(self.base) { node, image in
             guard let image = image  else {
@@ -123,12 +142,14 @@ extension Reactive where Base: ASButtonNode {
         }
     }
     
+    /// States of observed `ASButtonNode`.
     public enum ASControlStateType {
         case normal(Any?)
         case highlighted(Any?)
         case selected(Any?)
         case disabled(Any?)
         
+        /// Wrapper for `ASControlStateType` from `UIControl.State`.
         public var state: UIControl.State {
             switch self {
             case .normal:
@@ -142,6 +163,7 @@ extension Reactive where Base: ASButtonNode {
             }
         }
         
+        /// Get `URL` from associate value. If associate value contains `URL`.
         public var url: URL? {
             switch self {
             case let .normal(value):
@@ -155,6 +177,7 @@ extension Reactive where Base: ASButtonNode {
             }
         }
         
+        /// Get `UIImage` from associate value. If associate value contains `UIImage`.
         public var image: UIImage? {
             switch self {
             case let .normal(value):
@@ -168,6 +191,7 @@ extension Reactive where Base: ASButtonNode {
             }
         }
         
+        /// Get text attributes from associate value. If associate value contains text attributes.
         public var attributes: [NSAttributedString.Key: Any]? {
             switch self {
             case let .normal(value):

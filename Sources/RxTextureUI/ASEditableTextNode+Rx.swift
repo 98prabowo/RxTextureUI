@@ -9,11 +9,12 @@ import RxCocoa
 import RxSwift
 
 extension Reactive where Base: ASEditableTextNode {
+    /// Delegate proxy for `ASEditableTextNode`.
     public var delegate: DelegateProxy<ASEditableTextNode, ASEditableTextNodeDelegate> {
         return RxASEditableTextNodeDelegateProxy.proxy(for: base)
     }
     
-    /// Reactive wrapper for `text` property.
+    /// Reactive wrapper for `attributedText` property.
     public var attributedText: ControlProperty<NSAttributedString?> {
         let source: Observable<NSAttributedString?> = .deferred { [weak editableTextNode = self.base] in
             let attributedText = editableTextNode?.attributedText
@@ -35,7 +36,7 @@ extension Reactive where Base: ASEditableTextNode {
         return ControlProperty(values: source, valueSink: bindingObserver)
     }
     
-    /// Binder for text with string.
+    /// Binder for string from `ASEditableTextNode`.
     /// - Parameters:
     ///     - attributes: List of attributes for the text.
     public func text(_ attributes: [NSAttributedString.Key: Any]?) -> ASBinder<String?> {
