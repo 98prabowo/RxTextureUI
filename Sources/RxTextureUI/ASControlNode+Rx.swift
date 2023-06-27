@@ -63,7 +63,9 @@ extension Reactive where Base: ASControlNode {
     }
     
     public var tap: Driver<Void> {
-        return self.controlEvent(.touchUpInside).mapToVoid().asDriverOnErrorJustComplete()
+        return self.controlEvent(.touchUpInside)
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
     }
     
     public func tap(to relay: PublishRelay<()>) -> Disposable {
