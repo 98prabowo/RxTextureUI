@@ -1,6 +1,6 @@
-import AsyncDisplayKit
 import RxCocoa
 import RxSwift
+import TextureSwiftSupport
 
 // Reference: https://www.objc.io/issues/3-views/scroll-view/#:~:text=The%20content%20size%20of%20a,0%2C%20h%3A0%7D%20.
 extension UIScrollView {

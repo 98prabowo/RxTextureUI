@@ -4,9 +4,9 @@
 //
 //  Created by Dimas Prabowo on 05/06/23.
 
-import AsyncDisplayKit
-import RxSwift
 import RxCocoa
+import RxSwift
+import TextureSwiftSupport
 
 extension Reactive where Base: ASTextNode {
     /// Binder of `NSAttributedString` for attributedText property of `ASTextNode`.

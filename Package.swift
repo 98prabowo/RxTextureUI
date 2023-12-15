@@ -16,7 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/ReactiveX/RxSwift.git", exact: Version(6, 6, 0)),
-        .package(url: "https://github.com/nickaroot/Texture.git", branch: "spm")
+        .package(url: "https://github.com/FluidGroup/TextureSwiftSupport", revision: "4fe38cfb8ab3a00fc9e792f4901955bc0ca711af")
     ],
     targets: [
         .target(
@@ -24,7 +24,7 @@ let package = Package(
             dependencies: [
                 .product(name: "RxSwift", package: "RxSwift"),
                 .product(name: "RxCocoa", package: "RxSwift"),
-                .product(name: "AsyncDisplayKit", package: "Texture")
+                .product(name: "TextureSwiftSupport", package: "TextureSwiftSupport")
             ]
         ),
         .testTarget(

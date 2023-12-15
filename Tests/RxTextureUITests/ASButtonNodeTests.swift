@@ -5,9 +5,9 @@
 //  Created by Dimas Prabowo on 14/06/23.
 //
 
-import AsyncDisplayKit
 import RxCocoa
 import RxSwift
+import TextureSwiftSupport
 import XCTest
 
 @testable import RxTextureUI

@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "RxTextureUI"
-  spec.version      = "0.1.4"
+  spec.version      = "0.1.5"
   spec.summary      = "Reactive Extension Library for Texture"
 
   spec.description  = <<-DESC
@@ -20,6 +20,6 @@ Pod::Spec.new do |spec|
   spec.dependency 'RxCocoaRuntime', '0.0.1'
   spec.dependency 'RxCocoa', '~> 6.5'
   spec.dependency 'RxSwift', '~> 6.5'
-  spec.dependency 'Texture', '~> 3.1'
+  spec.dependency 'TextureSwiftSupport', '~> 3.19'
   spec.xcconfig = { 'ENABLE_BITCODE' => 'NO' }
 end

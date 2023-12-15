@@ -4,9 +4,9 @@
 //
 //  Created by Dimas Prabowo on 05/06/23.
 
-import AsyncDisplayKit
 import RxCocoa
 import RxSwift
+import TextureSwiftSupport
 
 public protocol ASObserverType: ObserverType {
     associatedtype Element

@@ -5,10 +5,10 @@
 //  Created by Dimas Prabowo on 14/06/23.
 //
 
-import AsyncDisplayKit
 import RxCocoa
 import RxSwift
 import RxTextureUI
+import TextureSwiftSupport
 import XCTest
 
 #if AS_ENABLE_TEXTNODE
