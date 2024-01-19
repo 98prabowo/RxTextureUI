@@ -76,6 +76,7 @@ extension Reactive where Base: UIScrollView {
     public var reachTop: ControlEvent<Void> {
         let contentSizeSelector: Selector = #selector(setter: UIScrollView.contentSize)
         let contentSizeTrigger: Observable<Void> = base.rx
+            .delegate
             .methodInvoked(contentSizeSelector)
             .map { [base] _ -> CGFloat in
                 base.contentSize.height
