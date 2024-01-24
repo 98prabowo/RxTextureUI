@@ -88,7 +88,7 @@ extension Reactive where Base: ASCollectionNode {
     ///
     /// - Parameters:
     ///    - item: Threshold index for trigger.
-    public func reach(item index: Int) -> ControlEvent<Void> {
+    public func fromBottom(item index: Int) -> ControlEvent<Void> {
         let willDisplaySelector: Selector = #selector(ASCollectionDelegate.collectionNode(_:willDisplayItemWith:))
         let thresholdTrigger: Observable<Void> = base.rx
             .delegate
