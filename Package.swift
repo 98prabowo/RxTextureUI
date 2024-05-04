@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "RxTextureUI",
     platforms: [
-      .iOS(.v11)
+      .iOS(.v13)
     ],
     products: [
         .library(
@@ -15,8 +15,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/ReactiveX/RxSwift.git", exact: Version(6, 6, 0)),
-        .package(url: "https://github.com/FluidGroup/TextureSwiftSupport", revision: "4fe38cfb8ab3a00fc9e792f4901955bc0ca711af")
+        .package(url: "https://github.com/ReactiveX/RxSwift.git", exact: Version(6, 7, 0)),
+        .package(url: "https://github.com/FluidGroup/TextureSwiftSupport", exact: Version(3, 20, 1))
     ],
     targets: [
         .target(
