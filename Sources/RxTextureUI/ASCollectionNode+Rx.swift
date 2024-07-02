@@ -84,6 +84,48 @@ extension Reactive where Base: ASCollectionNode {
         return ControlEvent(events: merge)
     }
     
+    /// Trigger for collection node reach bottom edge
+    public var reachTop: ControlEvent<Void> {
+        let layoutFinishSelector: Selector = #selector(ASCollectionNode.layoutDidFinish)
+        let contentSizeTrigger: Observable<Void> = base.rx
+            .delegate
+            .methodInvoked(layoutFinishSelector)
+            .map { [base] _ -> CGFloat in
+                base.view.contentSize.height
+            }
+            .distinctUntilChanged()
+            .filter { [base] _ -> Bool in
+                base.view.isReachTop
+            }
+            .mapToVoid()
+        
+        let draggingSelector: Selector = #selector(ASCollectionDelegate.scrollViewDidEndDragging(_:willDecelerate:))
+        let draggingTrigger: Observable<Void> = base.rx
+            .delegate
+            .methodInvoked(draggingSelector)
+            .filter { [base] _ -> Bool in
+                base.view.isReachTop
+            }
+            .mapToVoid()
+        
+        let deceleratingSelector: Selector = #selector(ASCollectionDelegate.scrollViewDidEndDecelerating(_:))
+        let deceleratingTrigger: Observable<Void> = base.rx
+            .delegate
+            .methodInvoked(deceleratingSelector)
+            .filter { [base] _ -> Bool in
+                base.view.isReachTop
+            }
+            .mapToVoid()
+        
+        let merge: Observable<Void> = Observable.merge(
+            contentSizeTrigger,
+            draggingTrigger,
+            deceleratingTrigger
+        )
+        
+        return ControlEvent(events: merge)
+    }
+    
     /// Trigger for collection node reach item n from bottom.
     ///
     /// - Parameters:
