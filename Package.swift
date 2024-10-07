@@ -15,7 +15,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/ReactiveX/RxSwift.git", exact: Version(6, 7, 0)),
+        .package(url: "https://github.com/ReactiveX/RxSwift.git", exact: Version(6, 7, 1)),
         .package(url: "https://github.com/FluidGroup/TextureSwiftSupport", exact: Version(3, 20, 1))
     ],
     targets: [

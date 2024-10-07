@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "RxTextureUI"
-  spec.version      = "1.0.1"
+  spec.version      = "1.0.2"
   spec.summary      = "Reactive Extension Library for Texture"
 
   spec.description  = <<-DESC
